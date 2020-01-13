@@ -1,2 +1,6 @@
-# The-Social-Network
-A marketplace on top of ocean protocol where users can sell their personal facebook data.
+
+<p align='center'>
+  <img src="./img/icon_sq.png" width=200/>
+</p>
+
+### The Social Network
