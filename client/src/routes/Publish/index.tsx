@@ -20,12 +20,11 @@ interface PublishState {
 	dateCreated?: string;
 	price?: string;
 	// author?: string;
-	// category?: string;
 	description?: string;
 	files?: File[];
 	type?: AssetType;
 	// copyrightHolder?: string;
-	category?: string;
+	categories?: string;
 
 	currentStep?: number;
 	publishingStep?: number;
@@ -59,7 +58,7 @@ class Publish extends Component<{}, PublishState> {
 		type: 'dataset' as AssetType,
 		// license: '',
 		// copyrightHolder: '',
-		category: '',
+		categories: '',
 
 		currentStep: 1,
 		isPublishing: false,
@@ -71,14 +70,15 @@ class Publish extends Component<{}, PublishState> {
 			1: { name: false, files: false, allFieldsValid: false },
 			2: {
 				description: false,
+				categories: false,
 				allFieldsValid: false
 			},
-			3: {
-				// author: false,
-				// copyrightHolder: false,
-				category: false,
-				allFieldsValid: false
-			}
+			// 3: {
+			// 	// author: false,
+			// 	// copyrightHolder: false,
+			// 	categories: false,
+			// 	allFieldsValid: false
+			// }
 		}
 	};
 
@@ -125,7 +125,7 @@ class Publish extends Component<{}, PublishState> {
 			type: 'dataset' as AssetType,
 			// license: '',
 			// copyrightHolder: '',
-			category: '',
+			categories: '',
 			isPublishing: false,
 			isPublished: false,
 			publishingStep: 0,
@@ -196,7 +196,7 @@ class Publish extends Component<{}, PublishState> {
 		//
 		// Step 2
 		//
-		if (validationStatus[2].description) {
+		if (validationStatus[2].description && validationStatus[2].categories) {
 			this.setState((prevState) => ({
 				validationStatus: {
 					...prevState.validationStatus,
@@ -221,27 +221,27 @@ class Publish extends Component<{}, PublishState> {
 		//
 		// Step 3
 		//
-		if (validationStatus[3].category) {
-			this.setState((prevState) => ({
-				validationStatus: {
-					...prevState.validationStatus,
-					3: {
-						...prevState.validationStatus[3],
-						allFieldsValid: true
-					}
-				}
-			}));
-		} else {
-			this.setState((prevState) => ({
-				validationStatus: {
-					...prevState.validationStatus,
-					3: {
-						...prevState.validationStatus[3],
-						allFieldsValid: false
-					}
-				}
-			}));
-		}
+		// if (validationStatus[3].category) {
+		// 	this.setState((prevState) => ({
+		// 		validationStatus: {
+		// 			...prevState.validationStatus,
+		// 			3: {
+		// 				...prevState.validationStatus[3],
+		// 				allFieldsValid: true
+		// 			}
+		// 		}
+		// 	}));
+		// } else {
+		// 	this.setState((prevState) => ({
+		// 		validationStatus: {
+		// 			...prevState.validationStatus,
+		// 			3: {
+		// 				...prevState.validationStatus[3],
+		// 				allFieldsValid: false
+		// 			}
+		// 		}
+		// 	}));
+		// }
 	};
 
 	private registerAsset = async (event: FormEvent<HTMLFormElement>) => {
@@ -280,7 +280,7 @@ class Publish extends Component<{}, PublishState> {
 			additionalInformation: Object.assign(AssetModel.additionalInformation, {
 				description: this.state.description,
 				// copyrightHolder: this.state.copyrightHolder,
-				category: this.state.category
+				categories: [this.state.categories]
 			})
 		};
 

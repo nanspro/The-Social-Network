@@ -32,20 +32,9 @@
 					"required": true,
 					"rows": 5
 				},
-				"dateCreated": {
-					"label": "Start Date",
-					"help": "Select the start date for the data.",
-					"type": "date",
-					"required": true
-				}
-			}
-		},
-		{
-			"title": "Category",
-			"description": "Type of data",
-			"fields": {
-				"category": {
+				"categories": {
 					"label": "Category",
+					"help": "Pick a category which best fits your social data type.",
 					"type": "select",
 					"required": true,
 					"options": [
@@ -74,6 +63,12 @@
 						"Security and Login Information",
 						"Different Activity"
 					]
+				},
+				"dateCreated": {
+					"label": "Start Date",
+					"help": "Select the start date for the data.",
+					"type": "date",
+					"required": true
 				}
 			}
 		},
